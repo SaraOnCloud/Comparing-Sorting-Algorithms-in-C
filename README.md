@@ -1,1 +1,1 @@
-# Comparing-Sorting-Algorithms-in-C
+# Comparing Sorting Algorithms in C
