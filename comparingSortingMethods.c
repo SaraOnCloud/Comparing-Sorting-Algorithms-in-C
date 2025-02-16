@@ -86,12 +86,27 @@ void bubbleSort(int *array, int size) {
     }
 }
 
+void selectionSort(int array[], int size) {
+    for (int i = 0; i < size -1; i++) {
+        int minIndex = i;
+        for (int j = i + 1; j < size; j++) {
+            if (array[j] < array[minIndex])
+             minIndex = j;
+          }
+                // swap
+                int temp = array[i];
+                array[i] = array[minIndex];
+                array[minIndex] = temp;
+            }
+        }
+
+
 int main() {
-    int size = 100000;
+    int size = 10000;
     int *array1 = (int *)malloc(size * sizeof(int));
     int *array2 = (int *)malloc(size * sizeof(int));
-
-    if (!array1 || !array2) {
+    int *array3 = (int *)malloc(size * sizeof(int));
+    if (!array1 || !array2 || !array3) {
         printf("Error al asignar memoria.\n");
         return 1;
     }
@@ -112,9 +127,15 @@ int main() {
     clock_t endTimeBubbleSort = clock();
     double elapsedTimeBubbleSort = ((double)(endTimeBubbleSort - startTimeBubbleSort)) / CLOCKS_PER_SEC;
 
+    //Medir tiempo de Selection Sort
+    clock_t startTimeSelectionSort = clock();
+    selectionSort(array3, size);
+    clock_t endTimeSelectionSort = clock();
+    double elapsedTimeSelectionSort = ((double)(endTimeSelectionSort - startTimeSelectionSort)) / CLOCKS_PER_SEC;
+
     printf("Merge Sort time: %f seconds\n", elapsedTimeMergeSort);
     printf("Bubble Sort time: %f seconds\n", elapsedTimeBubbleSort);
-
+    printf("Selection Sort time: %f seconds\n", elapsedTimeSelectionSort);
     
 
     return 0;
